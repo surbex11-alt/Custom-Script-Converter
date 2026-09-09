@@ -1,6 +1,7 @@
 @font-face {
-  font-family: "ReactionCustomScript";
-  src: url("ReactionCustomScript.ttf") format("truetype");
+  font-family: "AsadCustomScript";
+  src: url("assets/fonts/Asad_Custom_Script_Alphabet.ttf") format("truetype");
+  font-display: swap;
 }
 *{box-sizing:border-box}
 body{
@@ -23,7 +24,7 @@ textarea,.output{
 }
 textarea:focus,.output:focus{outline:none;border-color:#5c3aa8}
 .output{margin-top:14px;white-space:pre-wrap;overflow-wrap:anywhere}
-.custom,.customInput{font-family:"ReactionCustomScript","Noto Sans Symbols",sans-serif;font-size:48px;line-height:1.35}
+.custom,.customInput{font-family:"AsadCustomScript","Noto Sans Symbols",sans-serif;font-size:48px;line-height:1.35}
 .roman{font-size:24px}
 .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 button{
