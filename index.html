@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Script Converter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>Custom Script Converter</h1>
+    <p>Roman English ⇄ Your Custom Alphabet Script</p>
+  </header>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>1. Roman English → Custom Script</h2>
+      <textarea id="romanInput" placeholder="Type Roman English here...">ASAD ZIA</textarea>
+      <div class="output custom" id="scriptOutput" contenteditable="true" spellcheck="false"></div>
+      <div class="actions">
+        <button data-copy="scriptOutput">Copy Custom Text</button>
+        <button data-clear="romanInput">Clear</button>
+      </div>
+      <p class="hint">Letters are converted to private-use font characters, so copied text can be pasted back into this app.</p>
+    </article>
+
+    <article class="panel">
+      <h2>2. Custom Script → Roman English</h2>
+      <textarea id="scriptInput" class="customInput" placeholder="Paste custom text generated above here..."></textarea>
+      <div class="output roman" id="romanOutput"></div>
+      <div class="actions">
+        <button data-copy="romanOutput">Copy Roman Text</button>
+        <button data-clear="scriptInput">Clear</button>
+      </div>
+      <p class="hint">This decoder recognizes the custom text produced by this app and font.</p>
+    </article>
+  </section>
+
+  <section class="legend">
+    <h3>Supported characters</h3>
+    <p>A–Z, a–z and 0–9. Spaces and common punctuation stay unchanged.</p>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
