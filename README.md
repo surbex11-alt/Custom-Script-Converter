@@ -1,25 +1,26 @@
-# Custom Script Converter
+# Asad Custom Script Converter V2
 
-A simple browser application that converts Roman English text into a custom alphabet script and converts the custom script back into Roman English.
+100% static client-side web application for the Asad Custom Script alphabet.
 
-## Features
+## V2 features
+- Roman English ↔ Custom Script
+- Official TTF rendering
+- Full A-Z / 0-9 alphabet reference
+- Custom web keyboard
+- Copy converted text
+- Live font preview
+- 280° print mode
+- Font Lab with browser-local glyph transform presets
+- Unicode Private Use Area mapping
+- JSON import/export for glyph presets
+- Mobile-first UI
+- No backend
 
-- Roman English → Custom Script
-- Custom Script → Roman English
-- Supports A–Z, a–z and 0–9
-- Copy and paste support
-- Custom TrueType font included
-- Runs entirely in the browser
+## Source of truth
+The supplied `assets/fonts/Asad_Custom_Script_Alphabet.ttf` is the visual source of truth. V2 does not invent replacement glyph artwork.
 
-## Usage
+## Important font-editor behavior
+The built-in Font Lab stores transformation presets locally in the browser. It intentionally does not overwrite the original TTF. This protects the source font while allowing controlled editing experiments. A true TTF outline editor/exporter can be added as a later module using the same glyph mapping.
 
-Open `index.html` in a modern browser.
-
-The custom symbols use Unicode Private Use Area characters. The included `ReactionCustomScript.ttf` font is required to display those characters correctly outside the converter.
-
-## Project files
-
-- `index.html` – application interface
-- `style.css` – design and responsive layout
-- `script.js` – encoding and decoding logic
-- `ReactionCustomScript.ttf` – custom alphabet font
+## Deployment
+The project is designed for Vercel or any static host. No build command, server, database, or environment variables are required.

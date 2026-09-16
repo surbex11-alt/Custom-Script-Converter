@@ -1,0 +1,7 @@
+{
+  "name": "Asad Custom Script Alphabet",
+  "version": "2.0",
+  "sourceOfTruth": "assets/fonts/Asad_Custom_Script_Alphabet.ttf",
+  "mappingPolicy": "Roman A-Z and 0-9 map to Private Use Area codepoints E000-E023.",
+  "characters": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"]
+}

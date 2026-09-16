@@ -1,47 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Script Converter</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#402079">
+<title>Asad Custom Script Converter V2</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
-  <header>
-    <h1>Custom Script Converter</h1>
-    <p>Roman English ⇄ Your Custom Alphabet Script</p>
-  </header>
+<header class="topbar">
+  <div><span class="eyebrow">V2 • 100% STATIC</span><h1>Asad Custom Script</h1><p>Converter • Keyboard • Font Lab • Print</p></div>
+  <a href="https://github.com/surbex11-alt/Custom-Script-Converter" target="_blank" rel="noopener">GitHub</a>
+</header>
 
-  <section class="grid">
-    <article class="panel">
-      <h2>1. Roman English → Custom Script</h2>
-      <textarea id="romanInput" placeholder="Type Roman English here...">ASAD ZIA</textarea>
-      <div class="output custom" id="scriptOutput" contenteditable="true" spellcheck="false"></div>
-      <div class="actions">
-        <button data-copy="scriptOutput">Copy Custom Text</button>
-        <button data-clear="romanInput">Clear</button>
+<nav class="tabs" aria-label="Application sections">
+  <button class="tab active" data-tab="convert">Convert</button>
+  <button class="tab" data-tab="keyboard">Keyboard</button>
+  <button class="tab" data-tab="font">Font Lab</button>
+  <button class="tab" data-tab="alphabet">Alphabet</button>
+  <button class="tab" data-tab="print">Print</button>
+</nav>
+
+<main>
+<section id="convert" class="view active">
+  <div class="hero"><h2>Roman ↔ Custom Script</h2><p>The supplied Asad Custom Script TTF is the visual source of truth. Mapping is kept separate from rendering.</p></div>
+  <div class="grid two">
+    <article class="card">
+      <h3>Roman English → Custom Script</h3>
+      <textarea id="romanInput" placeholder="Type Roman English...">REACTIONS PK IS THE FUTURE</textarea>
+      <div id="scriptOutput" class="output custom" aria-live="polite"></div>
+      <div class="row">
+        <button id="copyCustom">Copy converted text</button><button class="secondary" id="clearRoman">Clear</button>
       </div>
-      <p class="hint">The map is connected directly to the uploaded TTF: A–Z and 0–9 render as your custom vector glyphs.</p>
     </article>
+    <article class="card">
+      <h3>Custom Script → Roman English</h3>
+      <textarea id="customInput" class="custom" placeholder="Paste generated Custom Script here..."></textarea>
+      <div id="romanOutput" class="output roman"></div>
+      <div class="row"><button id="copyRoman">Copy Roman text</button><button class="secondary" id="clearCustom">Clear</button></div>
+    </article>
+  </div>
+  <article class="card preview-card">
+    <div class="row between"><h3>Live font preview</h3><span id="fontStatus" class="status">Checking font…</span></div>
+    <div id="livePreview" class="custom preview">REACTIONS PK IS THE FUTURE</div>
+    <div class="controls">
+      <label>Size <input id="fontSize" type="range" min="20" max="110" value="58"></label>
+      <label>Spacing <input id="letterSpacing" type="range" min="-4" max="16" value="1"></label>
+    </div>
+  </article>
+</section>
 
-    <article class="panel">
-      <h2>2. Custom Script → Roman English</h2>
-      <textarea id="scriptInput" class="customInput" placeholder="Paste custom text generated above here..."></textarea>
-      <div class="output roman" id="romanOutput"></div>
-      <div class="actions">
-        <button data-copy="romanOutput">Copy Roman Text</button>
-        <button data-clear="scriptInput">Clear</button>
+<section id="keyboard" class="view">
+  <div class="hero"><h2>Custom Web Keyboard</h2><p>Tap Roman keys to insert their mapped Custom Script glyphs. Long text stays client-side.</p></div>
+  <div class="card">
+    <div id="keyboardOutput" class="output custom keyboardOutput"></div>
+    <div id="keyboardGrid" class="keyboard"></div>
+    <div class="row"><button id="copyKeyboard">Copy keyboard text</button><button class="secondary" id="keyboardBackspace">⌫ Backspace</button><button class="secondary" id="keyboardSpace">Space</button><button class="secondary" id="keyboardClear">Clear</button></div>
+  </div>
+</section>
+
+<section id="font" class="view">
+  <div class="hero"><h2>Built-in Font Lab</h2><p>Inspect the supplied TTF and create local glyph transform presets. The original font file is never overwritten.</p></div>
+  <div class="grid font-grid">
+    <article class="card">
+      <h3>Glyph selector</h3><div id="glyphSelector" class="glyphSelector"></div>
+      <div class="editorControls">
+        <label>Scale X <input id="scaleX" type="number" value="1" step=".05"></label>
+        <label>Scale Y <input id="scaleY" type="number" value="1" step=".05"></label>
+        <label>Rotate <input id="glyphRotate" type="number" value="0" step="1">°</label>
+        <label>Offset X <input id="offsetX" type="number" value="0" step="1"></label>
+        <label>Offset Y <input id="offsetY" type="number" value="0" step="1"></label>
       </div>
-      <p class="hint">The decoder uses the same A–Z and 0–9 glyph map as the uploaded font.</p>
+      <div class="row"><button id="saveGlyph">Save preset</button><button class="secondary" id="resetGlyph">Reset</button></div>
+      <p class="small">Presets are stored in this browser only. They do not claim to rewrite the supplied TTF.</p>
     </article>
-  </section>
+    <article class="card">
+      <h3>TTF preview</h3>
+      <div id="glyphPreview" class="custom glyphPreview">A</div>
+      <pre id="glyphInfo">Loading font…</pre>
+      <div class="row"><button id="exportPresets">Export glyph presets</button><button class="secondary" id="importPresets">Import glyph presets</button><input id="presetFile" type="file" accept=".json" hidden></div>
+    </article>
+  </div>
+</section>
 
-  <section class="legend">
-    <h3>Connected glyph map</h3>
-    <p>A–Z and 0–9 are mapped to the corresponding vector glyphs in Asad Custom Script. Spaces and punctuation stay unchanged.</p>
-  </section>
+<section id="alphabet" class="view">
+  <div class="hero"><h2>Official Alphabet Reference</h2><p>A–Z and 0–9 use the connected mapping. The displayed shapes come from the supplied TTF.</p></div>
+  <div id="alphabetGrid" class="alphabetGrid"></div>
+</section>
+
+<section id="print" class="view">
+  <div class="hero"><h2>280° Print Mode</h2><p>280° is a custom orientation. 180° is physically upside down. Rotation changes visual presentation only.</p></div>
+  <div class="card">
+    <textarea id="printInput" placeholder="Enter Roman English text...">REACTIONS PK IS THE FUTURE</textarea>
+    <div id="printCanvas" class="custom printCanvas"></div>
+    <div class="controls">
+      <label>Rotation <input id="rotation" type="number" min="0" max="359" value="280">°</label>
+      <label>Font size <input id="printSize" type="number" min="16" max="120" value="56"></label>
+    </div>
+    <div class="row"><button id="printButton">Print</button><button class="secondary" id="resetRotation">Reset to 0°</button></div>
+  </div>
+</section>
 </main>
+
+<footer>Asad Custom Script Converter V2 • No backend • Client-side processing</footer>
+<script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
